@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sogar0ricas.github.io/pc-web-leisu-com/sitemap.xml

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>雷速 · 资料整理与信息索引</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #faf7f2;
+      font-family: "Georgia", "Noto Serif SC", "Source Han Serif SC", serif;
+      color: #2e2c28;
+      line-height: 1.7;
+      padding: 2rem 1.5rem 3rem;
+    }
+
+    .page-wrap {
+      max-width: 820px;
+      margin: 0 auto;
+      background: #fffcf8;
+      padding: 2.5rem 2rem;
+      border-radius: 28px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
+    }
+
+    /* 主视觉区 —— 安静、留白 */
+    .hero {
+      margin-bottom: 2.8rem;
+      border-bottom: 1px solid #e6dfd6;
+      padding-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 450;
+      letter-spacing: 0.02em;
+      color: #3e3a34;
+      margin-bottom: 0.25rem;
+    }
+
+    .hero .sub {
+      font-size: 1rem;
+      color: #8b8377;
+      margin-top: 0.1rem;
+      font-style: italic;
+      letter-spacing: 0.5px;
+    }
+
+    .hero p {
+      margin-top: 1rem;
+      color: #4b453d;
+      font-size: 1rem;
+    }
+
+    /* 信息卡片 —— 三段式内容卡片 */
+    .card-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+      margin: 2.2rem 0;
+    }
+
+    .card-item {
+      background: #fbf9f5;
+      padding: 1.6rem 1.8rem;
+      border-radius: 20px;
+      border-left: 4px solid #d2c3b0;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+      transition: background 0.2s ease;
+    }
+
+    .card-item:hover {
+      background: #f6f1ea;
+    }
+
+    .card-item h2 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #3a3630;
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.01em;
+    }
+
+    .card-item p {
+      color: #4f4a43;
+      font-size: 0.98rem;
+    }
+
+    .card-item p + p {
+      margin-top: 0.6rem;
+    }
+
+    /* 引用块 / 提示框 */
+    .quote-block {
+      background: #f3efe9;
+      padding: 1.2rem 1.8rem;
+      border-radius: 18px;
+      margin: 2rem 0;
+      border-left: 6px solid #b3a492;
+      color: #3c3731;
+      font-size: 0.98rem;
+      font-style: normal;
+    }
+
+    .quote-block strong {
+      font-weight: 550;
+      color: #2c2822;
+    }
+
+    .quote-block a {
+      color: #7b6b58;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-color: #c9bcaa;
+      font-weight: 450;
+    }
+
+    .quote-block a:hover {
+      color: #4e4133;
+      text-decoration-color: #7b6b58;
+    }
+
+    /* 自然链接段落 */
+    .link-paragraph {
+      margin: 2rem 0 1.5rem;
+      padding: 0.5rem 0 0.5rem 1rem;
+      border-left: 2px solid #d6cdc0;
+    }
+
+    .link-paragraph p {
+      margin-bottom: 0.6rem;
+      font-size: 0.98rem;
+      color: #4f4a43;
+    }
+
+    .link-paragraph a {
+      color: #6b5d4b;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 0.5px;
+      text-decoration-color: #b7aa99;
+    }
+
+    .link-paragraph a:hover {
+      color: #3a3229;
+      text-decoration-color: #6b5d4b;
+    }
+
+    /* FAQ 摘要 简洁 */
+    .faq-mini {
+      margin: 2.5rem 0 1.8rem;
+    }
+
+    .faq-mini details {
+      margin-bottom: 0.8rem;
+      border-bottom: 1px dashed #ddd5cb;
+      padding-bottom: 0.6rem;
+    }
+
+    .faq-mini summary {
+      font-weight: 500;
+      color: #3f3a33;
+      cursor: pointer;
+      padding: 0.2rem 0;
+      font-size: 1rem;
+      list-style: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .faq-mini summary::before {
+      content: "∷";
+      margin-right: 0.6rem;
+      color: #b7aa99;
+      font-size: 1.1rem;
+    }
+
+    .faq-mini summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-mini details[open] summary::before {
+      content: "∶";
+    }
+
+    .faq-mini .answer {
+      padding: 0.6rem 1.2rem 0.2rem;
+      color: #5b554b;
+      font-size: 0.95rem;
+    }
+
+    .faq-mini .answer a {
+      color: #6b5d4b;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #e2d9cf;
+      margin: 2.2rem 0 1.2rem;
+    }
+
+    .footnote {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #8f867b;
+      text-align: left;
+      border-top: 1px solid #eae2d9;
+      padding-top: 1.5rem;
+    }
+
+    .footnote a {
+      color: #7b6b58;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* 响应式 */
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem 0.8rem;
+      }
+      .page-wrap {
+        padding: 1.8rem 1rem;
+        border-radius: 20px;
+      }
+      .hero h1 {
+        font-size: 1.9rem;
+      }
+      .card-item {
+        padding: 1.2rem 1.2rem;
+      }
+      .card-item h2 {
+        font-size: 1.15rem;
+      }
+      .quote-block {
+        padding: 1rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-wrap">
+
+  <!-- 主视觉 -->
+  <div class="hero">
+    <h1>雷速 · 信息索引</h1>
+    <div class="sub">从资料整理到内容脉络</div>
+    <p>
+      许多时候，我们面对的不是信息的稀缺，而是如何将散落的片段重新组织成可用的结构。
+      关于<strong>雷速</strong>，这里是一份基于日常使用与梳理的内容卡片——不追求面面俱到，只希望为感兴趣的人提供一些干净的线索。
+    </p>
+  </div>
+
+  <!-- 信息卡片式用途卡片 -->
+  <div class="card-grid">
+
+    <div class="card-item">
+      <h2>作为资料整理工具</h2>
+      <p>
+        在浏览或收集信息的过程中，<strong>雷速</strong>提供的界面与检索方式，让归类、标记和快速调取变得自然。
+        适合需要反复查阅同一类内容的人，比如行业动态、项目文档或兴趣话题。
+      </p>
+      <p>
+        它更像一个轻量的知识锚点，帮助你在信息流中保持自己的节奏，而不是被推送牵着走。
+      </p>
+    </div>
+
+    <div class="card-item">
+      <h2>日常索引与浏览</h2>
+      <p>
+        如果你习惯同时关注多个方向的内容，<strong>雷速</strong>的卡片式布局和分类逻辑，可以减少在不同页面间来回跳转的疲劳感。
+        无论是阅读长文还是快速扫描标题，页面结构本身就在提供一种秩序。
+      </p>
+      <p>
+        从个人体验来说，它适合那些希望把“浏览”变成“整理”的人——哪怕只是随手保存一段文字或一个链接。
+      </p>
+    </div>
+
+    <div class="card-item">
+      <h2>适合怎样的人</h2>
+      <p>
+        编辑、研究者、内容爱好者，或者只是对信息组织方式有些在意的人。
+        不一定要有明确的专业背景，只要你在日常中需要反复查阅、对比或引用某些资料，<strong>雷速</strong>的呈现方式或许能带来一点顺手的感觉。
+      </p>
+      <p>
+        当然，它也不是万能的——没有任何工具能替代人的判断力，但一个好的索引至少能减少干扰。
+      </p>
+    </div>
+  </div>
+
+  <!-- 引用块 / 提示框 -->
+  <div class="quote-block">
+    <strong>一点个人观察</strong><br>
+    我认识的一位编辑曾经说，一个好的资料页面，应该让人觉得“下次想找什么，还会来这里”。
+    我想，<strong>雷速</strong>在某种程度上正在接近这个状态：不是用算法替你决定看什么，而是给你一个安静的基础结构，剩下的由你自己填充。
+    <br><br>
+    <span style="font-size:0.95rem;">如果你也想了解这个方向，不妨直接试试 <a href="https://pc-web-leisu.com">雷速</a>，看看它的页面逻辑是否符合你的使用习惯。</span>
+  </div>
+
+  <!-- 自然链接段落 -->
+  <div class="link-paragraph">
+    <p>
+      在写这篇介绍的时候，我反复打开过几次 <a href="https://pc-web-leisu.com">雷速</a> 的页面，想确认它的导航和分类是否真的像第一次使用时那样清晰。
+      结果发现，它的结构几乎没有变化，这反倒让我觉得可靠——一个工具如果总在变，反而难以建立信任。
+    </p>
+    <p>
+      另外，我也注意到它没有做很多花哨的动效或弹窗，这一点对于需要专注阅读的人来说，算是一个潜在的加分项。
+      如果你也倾向于“工具应该退到内容之后”，那么 <a href="https://pc-web-leisu.com">雷速</a> 可能是符合这种审美的选择之一。
+    </p>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <div class="faq-mini">
+    <details>
+      <summary>雷速适合用来做研究笔记吗？</summary>
+      <div class="answer">
+        如果说是深度笔记系统，它可能不是专门的笔记软件，但作为信息的整理和索引入口，它足够轻便。
+        我个人会把一些常看的内容放在里面，再配合本地笔记做延伸。
+      </div>
+    </details>
+    <details>
+      <summary>页面看起来内容不多，够用吗？</summary>
+      <div class="answer">
+        这取决于你的需求。如果你喜欢整洁的浏览环境，它的克制反而是优点。
+        就像一张干净的桌子，东西少不代表不能工作，而是给你留出摆放的空间。
+      </div>
+    </details>
+    <details>
+      <summary>是否有必要注册或登录？</summary>
+      <div class="answer">
+        目前我使用的体验中，大部分功能可以直接浏览。
+        具体可以前往 <a href="https://pc-web-leisu.com">雷速</a> 页面确认，界面上的引导很直接。
+      </div>
+    </details>
+  </div>
+
+  <hr>
+
+  <div class="footnote">
+    这份页面只是基于个人使用体验的整理与描述，不构成任何形式的推荐或承诺。
+    信息收集与索引的方式因人而异，建议亲自尝试后再做判断。
+  </div>
+
+</div>
+
+</body>
+</html>
